@@ -1,0 +1,45 @@
+<div class="row">
+    <div class="col-lg-4">
+        <div class="input-group mb-3">
+            <input #pattern (keyup.enter)="searchMoviesByString(pattern.value)" type="text" class="form-control" placeholder="search movies by title..."
+                    aria-label="search movies by title" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+                <button (click)="searchMoviesByString(pattern.value)" class="btn btn-warning" type="button">
+                    Search
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-2">
+	    @if (getSelectedMovie()) {
+            <app-movie-card [movie]="getSelectedMovie()"></app-movie-card>
+        } @else {
+            <p>Selecciona antes una película</p>
+        }
+    </div>
+    <div class="col-lg-6">
+        <blockquote class="blockquote">
+            You are logged in as... <i class="text-success">{{getNameById(getLoggedUser())}}</i>. Select target user:
+        </blockquote>
+        <div class="input-group mb-3">
+            <select [(ngModel)]="userToRecommend" class="form-select" aria-label="Default select example">
+                <option value="">Select a user</option>
+                @for ( u of getUsers(); track $index) {
+                    <option value="{{u.id}}">{{u.name}}</option>
+                }
+            </select>
+            <div class="input-group-append">
+                <button (click)="recommend()" class="btn btn-warning">RECOMMEND!</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <h3>Search results</h3>
+    <div class="row row-cols-md-5">
+        @for ( m of getMovies(); track $index) {
+            <app-movie-card (click)="setMovieToRecommend(m)" [movie]="m"  />
+        }
+    </div>
+</div>
