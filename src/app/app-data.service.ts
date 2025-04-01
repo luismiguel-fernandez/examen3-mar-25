@@ -51,15 +51,17 @@ export class AppDataService {
   recommend(userToRecommend:string, movieToRecommend:any) {
     //comprobar si hay un usuario logueado que hará de remitente
     if (this.loggedUser != "0") {
-      this.recommendations.push({
-        fromUser: this.loggedUser,
-        toUser: userToRecommend,
-        movie: movieToRecommend
+      this.api.getMovieById(movieToRecommend.imdbID).subscribe((m:any) => {
+        this.recommendations.push({
+          fromUser: this.loggedUser,
+          toUser: userToRecommend,
+          movie: m
+        })
+        this.saveLS()
+        alert("Recommended!")
+        console.table(this.recommendations)
+        //MEJORA: implementar un TOAST de bootstrap
       })
-      this.saveLS()
-      alert("Recommended!")
-      console.table(this.recommendations)
-      //MEJORA: implementar un TOAST de bootstrap
     }
   }
 

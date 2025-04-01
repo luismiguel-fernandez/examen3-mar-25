@@ -32,10 +32,14 @@
             <tbody>
                 @for ( r of getMoviesRecommendedTo(loggedUser.value); track $index) {
                     <tr>
-                        <td>{{r.movie.Title}}</td>
-                        <td></td>
+                        <td>
+                            <a href="https://www.imdb.com/es-es/title/{{r.movie.imdbID}}" target="_blank">
+                                {{r.movie.Title}}
+                            </a>
+                        </td>
+                        <td>{{r.movie.Genre}}</td>
                         <td>{{r.movie.Year}}</td>
-                        <td></td>
+                        <td>{{r.movie.imdbRating | starsRating}}</td>
                         <td>{{getNameById(r.fromUser)}}</td>
                         <td><button class="btn btn-danger">Remove</button></td>
                     </tr>
@@ -65,10 +69,14 @@
             <tbody>
                 @for ( r of getMoviesRecommendedFrom(loggedUser.value); track $index) {
                     <tr>
-                        <td>{{r.movie.Title}}</td>
-                        <td></td>
+                        <td>
+                            <a href="https://www.imdb.com/es-es/title/{{r.movie.imdbID}}" target="_blank">
+                                {{r.movie.Title}}
+                            </a>
+                        </td>
+                        <td>{{r.movie.Genre}}</td>
                         <td>{{r.movie.Year}}</td>
-                        <td></td>
+                        <td>{{r.movie.imdbRating | starsRating}}</td>
                         <td>{{getNameById(r.toUser)}}</td>
                         <td><button class="btn btn-danger">Remove</button></td>
                     </tr>

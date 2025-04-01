@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { AppDataService } from '../../app-data.service';
 import { FormsModule } from '@angular/forms';
+import { StarsRatingPipe } from '../../stars-rating.pipe';
 
 @Component({
   selector: 'app-profiles',
-  imports: [ FormsModule ],
+  imports: [ FormsModule, StarsRatingPipe ],
   templateUrl: './profiles.component.html',
   styles: `
     div.row { margin-top: 1cm;}

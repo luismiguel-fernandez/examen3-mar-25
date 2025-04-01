@@ -17,6 +17,10 @@ export class ApiService {
     return this.http.get(this.urlUsers);
   }
 
+  getMovieById(id:string) {
+    return this.http.get(this.urlMoviesById + id);
+  }
+
   getMoviesByString(cadena:string) {
     return this.http.get(this.urlMoviesByString + cadena);
   }
